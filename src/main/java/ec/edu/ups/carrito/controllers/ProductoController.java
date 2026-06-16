@@ -83,17 +83,21 @@ public class ProductoController {
     }
     
     public void actualizarProducto(){
-        int codigoActualizar = Integer.parseInt(actualizarProductoView.getTextFieldCodigoActualizar().getText());
         String nuevoNombre = actualizarProductoView.getTextFieldNuevoNombre().getText(); 
-        double nuevoOreciuo = Double.parseDouble(actualizarProductoView.getTextFieldNuevoPrecio().getText()); 
+        String precioTxt = actualizarProductoView.getTextFieldNuevoPrecio().getText(); 
         
-        for(int i = 0; i < listaProductos.size(); i++){
+        
+        if(!nuevoNombre.isEmpty() || !precioTxt.isEmpty()){
+            int codigoActualizar = Integer.parseInt(actualizarProductoView.getTextFieldCodigoActualizar().getText());
+            double nuevoPrecio = Double.parseDouble(precioTxt);
+            for(int i = 0; i < listaProductos.size(); i++){
             Producto produc = listaProductos.get(i);
-            if(produc.getCodigo() == codigoActualizar){
-                produc.setNombre(nuevoNombre);
-                produc.setPrecio(nuevoOreciuo);
-                System.out.println("Producto actualizado exitosamente");
-                return ; 
+                if(produc.getCodigo() == codigoActualizar){
+                    produc.setNombre(nuevoNombre);
+                    produc.setPrecio(nuevoPrecio);
+                    System.out.println("Producto actualizado exitosamente");
+                    return ; 
+                }
             }
         }
         
