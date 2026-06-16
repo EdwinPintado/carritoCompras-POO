@@ -1,15 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/MDIApplication.java to edit this template
- */
+
 package ec.edu.ups.carrito.views;
 
-/**
- *
- * @author Usuario
- */
+import ec.edu.ups.carrito.controllers.ProductoController;
+import javax.swing.JInternalFrame;
+
 public class PrincipalView extends javax.swing.JFrame {
 
+    private CrearProductoView crearProductoView;
+    private ProductoController productoController;
+    private BuscarProductoView buscarProductoView;
+    private ActualizarProductoView actualizarProductoView;
+    private EliminarProductoView eliminarProductoView;
+   
+    
     /**
      * Creates new form PrincipalView
      */
@@ -29,53 +32,59 @@ public class PrincipalView extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         productosMenu = new javax.swing.JMenu();
-        MenuItem = new javax.swing.JMenuItem();
-        buscarMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
+        CrearProductosMenuItem = new javax.swing.JMenuItem();
+        BuscarProductosMenuItem = new javax.swing.JMenuItem();
+        EliminarProductosMenuItem = new javax.swing.JMenuItem();
+        ActualizarProductosMenuItem = new javax.swing.JMenuItem();
         carritoMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
+        AgregarCarritoMenuItem = new javax.swing.JMenuItem();
+        EliminarCarritoMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        desktopPane.setPreferredSize(new java.awt.Dimension(401, 310));
+        getContentPane().add(desktopPane, java.awt.BorderLayout.CENTER);
+        desktopPane.getAccessibleContext().setAccessibleDescription("");
+
         productosMenu.setMnemonic('f');
         productosMenu.setText("Productos");
 
-        MenuItem.setMnemonic('o');
-        MenuItem.setText("Crear");
-        productosMenu.add(MenuItem);
+        CrearProductosMenuItem.setMnemonic('o');
+        CrearProductosMenuItem.setText("Crear");
+        CrearProductosMenuItem.addActionListener(this::CrearProductosMenuItemActionPerformed);
+        productosMenu.add(CrearProductosMenuItem);
 
-        buscarMenuItem.setMnemonic('s');
-        buscarMenuItem.setText("Buscar");
-        buscarMenuItem.addActionListener(this::buscarMenuItemActionPerformed);
-        productosMenu.add(buscarMenuItem);
+        BuscarProductosMenuItem.setMnemonic('s');
+        BuscarProductosMenuItem.setText("Buscar");
+        BuscarProductosMenuItem.addActionListener(this::BuscarProductosMenuItemActionPerformed);
+        productosMenu.add(BuscarProductosMenuItem);
 
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Eliminar");
-        productosMenu.add(saveAsMenuItem);
+        EliminarProductosMenuItem.setMnemonic('a');
+        EliminarProductosMenuItem.setText("Eliminar");
+        EliminarProductosMenuItem.addActionListener(this::EliminarProductosMenuItemActionPerformed);
+        productosMenu.add(EliminarProductosMenuItem);
 
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Actualizar");
-        exitMenuItem.addActionListener(this::exitMenuItemActionPerformed);
-        productosMenu.add(exitMenuItem);
+        ActualizarProductosMenuItem.setMnemonic('x');
+        ActualizarProductosMenuItem.setText("Actualizar");
+        ActualizarProductosMenuItem.addActionListener(this::ActualizarProductosMenuItemActionPerformed);
+        productosMenu.add(ActualizarProductosMenuItem);
 
         menuBar.add(productosMenu);
 
         carritoMenu.setMnemonic('e');
         carritoMenu.setText("Carrito");
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Agregar");
-        carritoMenu.add(cutMenuItem);
+        AgregarCarritoMenuItem.setMnemonic('t');
+        AgregarCarritoMenuItem.setText("Agregar");
+        carritoMenu.add(AgregarCarritoMenuItem);
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Eliminar");
-        copyMenuItem.addActionListener(this::copyMenuItemActionPerformed);
-        carritoMenu.add(copyMenuItem);
+        EliminarCarritoMenuItem.setMnemonic('y');
+        EliminarCarritoMenuItem.setText("Eliminar");
+        EliminarCarritoMenuItem.addActionListener(this::EliminarCarritoMenuItemActionPerformed);
+        carritoMenu.add(EliminarCarritoMenuItem);
 
         menuBar.add(carritoMenu);
 
@@ -94,31 +103,49 @@ public class PrincipalView extends javax.swing.JFrame {
 
         setJMenuBar(menuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    private void ActualizarProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProductosMenuItemActionPerformed
+        if(actualizarProductoView == null || !actualizarProductoView.isVisible()){    
+            actualizarProductoView = new ActualizarProductoView();
+            productoController = new ProductoController(actualizarProductoView);
+            actualizarProductoView.setVisible(true);
+            desktopPane.add(actualizarProductoView);            
+        }
+    }//GEN-LAST:event_ActualizarProductosMenuItemActionPerformed
 
-    private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_copyMenuItemActionPerformed
+    private void EliminarCarritoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCarritoMenuItemActionPerformed
+        
+    }//GEN-LAST:event_EliminarCarritoMenuItemActionPerformed
 
-    private void buscarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscarMenuItemActionPerformed
+    private void BuscarProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarProductosMenuItemActionPerformed
+        if(buscarProductoView == null || !buscarProductoView.isVisible()){    
+           buscarProductoView = new BuscarProductoView();
+           productoController = new ProductoController(buscarProductoView);
+           buscarProductoView.setVisible(true);
+           desktopPane.add(buscarProductoView);            
+        }
+    }//GEN-LAST:event_BuscarProductosMenuItemActionPerformed
+
+    private void CrearProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearProductosMenuItemActionPerformed
+        if(crearProductoView == null || !crearProductoView.isVisible()){    
+           crearProductoView = new CrearProductoView();
+           productoController = new ProductoController(crearProductoView);
+           crearProductoView.setVisible(true);
+           desktopPane.add(crearProductoView);            
+        }
+        
+    }//GEN-LAST:event_CrearProductosMenuItemActionPerformed
+
+    private void EliminarProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductosMenuItemActionPerformed
+        if(eliminarProductoView == null || !eliminarProductoView.isVisible()){    
+           eliminarProductoView = new EliminarProductoView();
+           productoController = new ProductoController(eliminarProductoView);
+           eliminarProductoView.setVisible(true);
+           desktopPane.add(eliminarProductoView);            
+        }
+    }//GEN-LAST:event_EliminarProductosMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,19 +183,19 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem MenuItem;
+    private javax.swing.JMenuItem ActualizarProductosMenuItem;
+    private javax.swing.JMenuItem AgregarCarritoMenuItem;
+    private javax.swing.JMenuItem BuscarProductosMenuItem;
+    private javax.swing.JMenuItem CrearProductosMenuItem;
+    private javax.swing.JMenuItem EliminarCarritoMenuItem;
+    private javax.swing.JMenuItem EliminarProductosMenuItem;
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem buscarMenuItem;
     private javax.swing.JMenu carritoMenu;
     private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu productosMenu;
-    private javax.swing.JMenuItem saveAsMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }
