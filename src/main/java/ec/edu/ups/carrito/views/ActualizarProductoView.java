@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package ec.edu.ups.carrito.views;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Usuario
- */
+
 public class ActualizarProductoView extends javax.swing.JInternalFrame {
     public ActualizarProductoView() {
         initComponents();
@@ -56,7 +51,10 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
         this.TextFieldNuevoPrecio = TextFieldNuevoPrecio;
     }
 
-    
+    public void mostrarInformacion (String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje);
+        dispose(); 
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -181,6 +179,9 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TextFieldNuevoPrecioActionPerformed
 
     private void CancelarActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActActionPerformed
+        TextFieldCodigoActualizar.setText("");
+        TextFieldNuevoNombre.setText("");
+        TextFieldNuevoPrecio.setText("");
         dispose();
     }//GEN-LAST:event_CancelarActActionPerformed
 
@@ -189,7 +190,7 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TextFieldCodigoActualizarActionPerformed
 
     private void AceptarActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActActionPerformed
-        
+
     }//GEN-LAST:event_AceptarActActionPerformed
 
 

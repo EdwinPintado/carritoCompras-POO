@@ -1,17 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package ec.edu.ups.carrito.views;
 
 import java.awt.TextArea;
 import java.awt.TextField;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Usuario
- */
 public class BuscarProductoView extends javax.swing.JInternalFrame {
 
     public BuscarProductoView() {
@@ -50,6 +44,10 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
         this.TextFieldBuscarCodigo = TextFieldBuscarCodigo;
     }
     
+    public void mostrarInformacion (String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje);
+        dispose(); 
+    }
     
     
     @SuppressWarnings("unchecked")
@@ -162,6 +160,8 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_AceptarBuscActionPerformed
 
     private void CancelarBuscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBuscActionPerformed
+        TextFieldBuscarCodigo.setText("");
+        TextAreaBusc.setText("");
         dispose();
     }//GEN-LAST:event_CancelarBuscActionPerformed
 

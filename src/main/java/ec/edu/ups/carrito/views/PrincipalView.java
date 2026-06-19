@@ -1,23 +1,39 @@
-
 package ec.edu.ups.carrito.views;
 
 import ec.edu.ups.carrito.controllers.ProductoController;
-import javax.swing.JInternalFrame;
+import ec.edu.ups.carrito.dao.ProductoDAO;
+import ec.edu.ups.carrito.dao.ProductoDaoMemoria;
+import ec.edu.ups.carrito.views.ActualizarProductoView;
+import ec.edu.ups.carrito.views.BuscarProductoView;
+import ec.edu.ups.carrito.views.CrearProductoView;
+import ec.edu.ups.carrito.views.EliminarProductoView;
 
 public class PrincipalView extends javax.swing.JFrame {
-
-    private CrearProductoView crearProductoView;
+   
     private ProductoController productoController;
+    private CrearProductoView crearProductoView;
     private BuscarProductoView buscarProductoView;
     private ActualizarProductoView actualizarProductoView;
     private EliminarProductoView eliminarProductoView;
-   
+    private ProductoDAO productoDAO;
     
     /**
      * Creates new form PrincipalView
      */
     public PrincipalView() {
         initComponents();
+        crearProductoView = new CrearProductoView();
+        buscarProductoView = new BuscarProductoView();
+        eliminarProductoView = new EliminarProductoView();
+        actualizarProductoView = new ActualizarProductoView();
+        productoDAO = new ProductoDaoMemoria(); 
+        
+        productoController = new ProductoController(productoDAO,crearProductoView, eliminarProductoView, buscarProductoView,actualizarProductoView);
+        
+        productoController.configurarEventosCrearProducto();
+        productoController.configurarEventosBuscarProducto();
+        productoController.configurarEventosActualizarProducto();
+        productoController.configurarEventosEliminarProducto();
     }
 
     /**
@@ -108,10 +124,9 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void ActualizarProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProductosMenuItemActionPerformed
         if(actualizarProductoView == null || !actualizarProductoView.isVisible()){    
-            actualizarProductoView = new ActualizarProductoView();
-            productoController = new ProductoController(actualizarProductoView);
-            actualizarProductoView.setVisible(true);
-            desktopPane.add(actualizarProductoView);            
+            desktopPane.remove(actualizarProductoView);  
+            desktopPane.add(actualizarProductoView);  
+            actualizarProductoView.setVisible(true);        
         }
     }//GEN-LAST:event_ActualizarProductosMenuItemActionPerformed
 
@@ -121,29 +136,26 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void BuscarProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarProductosMenuItemActionPerformed
         if(buscarProductoView == null || !buscarProductoView.isVisible()){    
-           buscarProductoView = new BuscarProductoView();
-           productoController = new ProductoController(buscarProductoView);
-           buscarProductoView.setVisible(true);
-           desktopPane.add(buscarProductoView);            
+            desktopPane.remove(buscarProductoView);  
+            desktopPane.add(buscarProductoView);  
+            buscarProductoView.setVisible(true);        
         }
     }//GEN-LAST:event_BuscarProductosMenuItemActionPerformed
 
     private void CrearProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearProductosMenuItemActionPerformed
         if(crearProductoView == null || !crearProductoView.isVisible()){    
-           crearProductoView = new CrearProductoView();
-           productoController = new ProductoController(crearProductoView);
-           crearProductoView.setVisible(true);
-           desktopPane.add(crearProductoView);            
+            desktopPane.remove(crearProductoView);  
+            desktopPane.add(crearProductoView);  
+            crearProductoView.setVisible(true);        
         }
         
     }//GEN-LAST:event_CrearProductosMenuItemActionPerformed
 
     private void EliminarProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductosMenuItemActionPerformed
         if(eliminarProductoView == null || !eliminarProductoView.isVisible()){    
-           eliminarProductoView = new EliminarProductoView();
-           productoController = new ProductoController(eliminarProductoView);
-           eliminarProductoView.setVisible(true);
-           desktopPane.add(eliminarProductoView);            
+            desktopPane.remove(eliminarProductoView);  
+            desktopPane.add(eliminarProductoView);  
+            eliminarProductoView.setVisible(true);        
         }
     }//GEN-LAST:event_EliminarProductosMenuItemActionPerformed
 
@@ -198,4 +210,5 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu productosMenu;
     // End of variables declaration//GEN-END:variables
 
+    
 }

@@ -2,6 +2,7 @@
 package ec.edu.ups.carrito.views;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
@@ -33,6 +34,11 @@ public class EliminarProductoView extends javax.swing.JInternalFrame {
 
     public void setCancelarEliminar(JButton CancelarEliminar) {    
         this.CancelarEliminar = CancelarEliminar;
+    }
+    
+    public void mostrarInformacion (String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje);
+        dispose(); 
     }
 
     /**
@@ -144,6 +150,7 @@ public class EliminarProductoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_AceptarEliminarActionPerformed
 
     private void CancelarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarEliminarActionPerformed
+        TextFieldCodigoEliminar.setText("");
         dispose();
     }//GEN-LAST:event_CancelarEliminarActionPerformed
 

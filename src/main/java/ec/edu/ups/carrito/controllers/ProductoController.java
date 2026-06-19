@@ -1,6 +1,7 @@
 
 package ec.edu.ups.carrito.controllers;
 
+import ec.edu.ups.carrito.dao.ProductoDAO;
 import ec.edu.ups.carrito.models.Producto;
 import ec.edu.ups.carrito.views.ActualizarProductoView;
 import ec.edu.ups.carrito.views.BuscarProductoView;
@@ -8,102 +9,104 @@ import ec.edu.ups.carrito.views.CrearProductoView;
 import ec.edu.ups.carrito.views.EliminarProductoView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ProductoController {
-    
-    private static List<Producto> listaProductos = new ArrayList<>();
+    private ProductoDAO productoDAO; 
     private CrearProductoView crearProductoView;
     private EliminarProductoView eliminarProductoView;
     private BuscarProductoView buscarProductoView;
     private ActualizarProductoView actualizarProductoView;
 
-    public ProductoController(CrearProductoView crearProductoView) {        
+    public ProductoController(ProductoDAO productoDAO, CrearProductoView crearProductoView, EliminarProductoView eliminarProductoView, BuscarProductoView buscarProductoView, ActualizarProductoView actualizarProductoView) {
+        this.productoDAO = productoDAO;
         this.crearProductoView = crearProductoView;
-        configurarEventosCrearProducto();
-    }
-    
-    public ProductoController(EliminarProductoView eliminarProductoView) {        
         this.eliminarProductoView = eliminarProductoView;
-        configurarEventosEliminarProducto();
-    }
-    
-    public ProductoController(BuscarProductoView buscarProductoView) {        
         this.buscarProductoView = buscarProductoView;
-        configurarEventosBuscarProducto();
-    }
-    
-    public ProductoController(ActualizarProductoView actualizarProductoView) {        
         this.actualizarProductoView = actualizarProductoView;
-        configurarEventosActualizarProducto();
     }
     
     
     public void crearProducto(){
-        int codigo = Integer.parseInt(crearProductoView.getTextFieldCodigo().getText());
-        String nombre = crearProductoView.getTextFieldNombre().getText();
-        double precio = Double.parseDouble(crearProductoView.getTextFieldPrecio().getText());
+        int respuesta = JOptionPane.showConfirmDialog(crearProductoView, "¿Quieres crear un nuevo producto?", "Confirmar", JOptionPane.YES_NO_OPTION); 
         
-        Producto producto = new Producto(codigo, nombre, precio);
-        listaProductos.add(producto);
-        System.out.println("Producto creado exitosamente");
+        if(respuesta == 0){
+            int codigo = Integer.parseInt(crearProductoView.getTextFieldCodigo().getText());
+            String nombre = crearProductoView.getTextFieldNombre().getText();
+            double precio = Double.parseDouble(crearProductoView.getTextFieldPrecio().getText());
+            
+            Producto producto = new Producto(codigo, nombre, precio);
+            productoDAO.crear(producto);
+            crearProductoView.mostrarInformacion("Producto creado exitosamente :)");
+            
+            crearProductoView.getTextFieldCodigo().setText("");
+            crearProductoView.getTextFieldNombre().setText("");
+            crearProductoView.getTextFieldPrecio().setText("");
+        } else{
+            crearProductoView.mostrarInformacion("Accion cancelada :(");
+        }
     }
     
     public void eliminarProducto(){
         int codigoEliminar = Integer.parseInt(eliminarProductoView.getTextFieldCodigoEliminar().getText());
+        Producto producto = productoDAO.buscar(codigoEliminar);
         
-        for( int i = 0; i < listaProductos.size(); i++){
-            if(listaProductos.get(i).getCodigo() == codigoEliminar ){
-                listaProductos.remove(i);
-                System.out.println("Producto eliminado exitosamente");
-                return ;
+        if(producto != null){
+            int respuesta = JOptionPane.showConfirmDialog(eliminarProductoView, "¿Quieres eliminar este producto: " + producto.getNombre() + " ?" , "Confirmar", JOptionPane.YES_NO_OPTION); 
+            if(respuesta == 0){
+                productoDAO.eliminar(codigoEliminar);
+                eliminarProductoView.mostrarInformacion("Producto eliminado con exito :)");
+                
+                eliminarProductoView.getTextFieldCodigoEliminar().setText("");
+            }else{
+                eliminarProductoView.mostrarInformacion("Accion cancelada :(");
             }
+        }else{
+            eliminarProductoView.mostrarInformacion("No se encontro el producto (Codigo no existe)");
         }
-        
-        System.out.println("No se encontro el producto (Codigo no existe)");
         
     }
     
     
     public void buscarProducto(){
         int codigoBuscar = Integer.parseInt(buscarProductoView.getTextFieldBuscarCodigo().getText());
+        Producto producto = productoDAO.buscar(codigoBuscar);
         
-        for(int i = 0; i < listaProductos.size(); i++){
-            Producto product = listaProductos.get(i);
-            if(product.getCodigo() == codigoBuscar){
-                String info = "Datos del producto: \n" + "Codigo: " + product.getCodigo() + "\nNombre: " +  product.getNombre() + "\nPrecio: " + product.getPrecio(); 
-                buscarProductoView.getTextAreaBusc().setText(info);
-                System.out.println("Producto encontrado exitosamente");
-                return ;
-            }
+        if(producto != null){
+            String informacion = "Producto encontrado: \n" + "Nombre: "+ producto.getNombre() + "\nPrecio: " + producto.getPrecio() + " $";
+            //buscarProductoView.mostrarInformacion(informacion);
+            buscarProductoView.getTextAreaBusc().setText(informacion);
+            
+            buscarProductoView.getTextFieldBuscarCodigo().setText("");
+        }else{
+            buscarProductoView.mostrarInformacion("No se encontro el producto (Codigo no existe)");
         }
-        
-        System.out.println("No se encontro el producto (Codigo no existe)");
     }
     
     public void actualizarProducto(){
-        String nuevoNombre = actualizarProductoView.getTextFieldNuevoNombre().getText(); 
-        String precioTxt = actualizarProductoView.getTextFieldNuevoPrecio().getText(); 
+        int codigoBuscar = Integer.parseInt(actualizarProductoView.getTextFieldCodigoActualizar().getText());
+        Producto productoExt = productoDAO.buscar(codigoBuscar);
         
-        
-        if(!nuevoNombre.isEmpty() || !precioTxt.isEmpty()){
-            int codigoActualizar = Integer.parseInt(actualizarProductoView.getTextFieldCodigoActualizar().getText());
-            double nuevoPrecio = Double.parseDouble(precioTxt);
-            for(int i = 0; i < listaProductos.size(); i++){
-            Producto produc = listaProductos.get(i);
-                if(produc.getCodigo() == codigoActualizar){
-                    produc.setNombre(nuevoNombre);
-                    produc.setPrecio(nuevoPrecio);
-                    System.out.println("Producto actualizado exitosamente");
-                    return ; 
-                }
+        if( productoExt != null){
+            int respuesta = JOptionPane.showConfirmDialog(eliminarProductoView, "¿Quieres actualizar este producto: " + productoExt.getNombre() + " ?" , "Confirmar", JOptionPane.YES_NO_OPTION); 
+            if(respuesta == 0){
+                String nuevoNombre = actualizarProductoView.getTextFieldNuevoNombre().getText(); 
+                double nuevoprecio = Double.parseDouble(actualizarProductoView.getTextFieldNuevoPrecio().getText()); 
+                Producto productoAct = new Producto(codigoBuscar,nuevoNombre,nuevoprecio);
+                productoDAO.actualizar(codigoBuscar,productoAct);
+                
+                actualizarProductoView.mostrarInformacion("Producto actualizado correctamente :)");
+                
+                actualizarProductoView.getTextFieldCodigoActualizar().setText("");
+                actualizarProductoView.getTextFieldNuevoNombre().setText("");
+                actualizarProductoView.getTextFieldNuevoPrecio().setText("");
+            }else{
+                actualizarProductoView.mostrarInformacion("Actualizacion candelada");
             }
+        }else{
+            actualizarProductoView.mostrarInformacion("No se encontro el producto (Codigo no existe)");
         }
-        
-        System.out.println("No se encontro el producto (Codigo no existe)");
     }
-    
     
     
     public void configurarEventosCrearProducto(){

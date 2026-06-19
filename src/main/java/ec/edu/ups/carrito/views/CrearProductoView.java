@@ -3,6 +3,7 @@ package ec.edu.ups.carrito.views;
 
 import java.awt.Button;
 import java.awt.TextField;
+import javax.swing.JOptionPane;
 
 
 public class CrearProductoView extends javax.swing.JInternalFrame {
@@ -52,6 +53,11 @@ public class CrearProductoView extends javax.swing.JInternalFrame {
 
     public void setButtonCancelar(Button buttonCancelar) {
         this.buttonCancelar = buttonCancelar;
+    }
+    
+    public void mostrarInformacion (String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje);
+        dispose(); 
     }
 
     
@@ -208,6 +214,9 @@ public class CrearProductoView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        textFieldCodigo.setText("");
+        textFieldNombre.setText("");
+        textFieldPrecio.setText("");
         dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
