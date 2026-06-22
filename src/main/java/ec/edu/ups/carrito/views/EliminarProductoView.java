@@ -73,7 +73,7 @@ public class EliminarProductoView extends javax.swing.JInternalFrame {
 
         TextFieldCodigoEliminar.addActionListener(this::TextFieldCodigoEliminarActionPerformed);
 
-        AceptarEliminar.setText("Aceptar");
+        AceptarEliminar.setText("Buscar");
         AceptarEliminar.addActionListener(this::AceptarEliminarActionPerformed);
 
         CancelarEliminar.setText("Cancelar");

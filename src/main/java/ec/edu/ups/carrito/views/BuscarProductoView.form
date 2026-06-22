@@ -58,22 +58,33 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel1" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="label1" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="TextFieldBuscarCodigo" min="-2" pref="274" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                           <Component id="AceptarBusc" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="CancelarBusc" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="139" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="label1" min="-2" pref="62" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="TextFieldBuscarCodigo" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="TextAreaBusc" alignment="0" min="-2" pref="346" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="label2" min="-2" pref="62" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="TextFieldNombreBus" min="-2" pref="274" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="label3" min="-2" pref="62" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="TextFieldPrecioBus" min="-2" pref="274" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="21" max="32767" attributes="0"/>
@@ -90,14 +101,22 @@
                       <Component id="label1" min="-2" max="-2" attributes="0"/>
                       <Component id="TextFieldBuscarCodigo" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="label2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextFieldNombreBus" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="label3" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="TextFieldPrecioBus" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="55" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="AceptarBusc" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="CancelarBusc" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="TextAreaBusc" min="-2" pref="136" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -129,14 +148,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldBuscarCodigoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="java.awt.TextArea" name="TextAreaBusc">
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="TextAreaBusc"/>
-          </AccessibilityProperties>
-        </Component>
         <Component class="javax.swing.JButton" name="AceptarBusc">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Aceptar"/>
+            <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="AceptarBusc"/>
@@ -154,6 +168,28 @@
           </AccessibilityProperties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarBuscActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="java.awt.Label" name="label2">
+          <Properties>
+            <Property name="alignment" type="int" value="1"/>
+            <Property name="text" type="java.lang.String" value="Nombre: "/>
+          </Properties>
+        </Component>
+        <Component class="java.awt.TextField" name="TextFieldNombreBus">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldNombreBusActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="java.awt.Label" name="label3">
+          <Properties>
+            <Property name="alignment" type="int" value="1"/>
+            <Property name="text" type="java.lang.String" value="Precio: "/>
+          </Properties>
+        </Component>
+        <Component class="java.awt.TextField" name="TextFieldPrecioBus">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldPrecioBusActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

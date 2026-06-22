@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoDaoMemoria implements ProductoDAO {
-    
     private List<Producto> lista; 
+    
     public ProductoDaoMemoria(){
         lista = new ArrayList<>();
     }
@@ -45,5 +45,10 @@ public class ProductoDaoMemoria implements ProductoDAO {
         if(productoEncontrado != null){
             lista.remove(productoEncontrado);
         } 
+    }
+
+    @Override
+    public List<Producto> listar() {
+        return lista;
     }
 }

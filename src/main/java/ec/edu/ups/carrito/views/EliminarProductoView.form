@@ -122,7 +122,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="AceptarEliminar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Aceptar"/>
+            <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="AceptarEliminar"/>

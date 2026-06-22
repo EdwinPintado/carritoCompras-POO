@@ -58,15 +58,19 @@
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" pref="123" max="32767" attributes="0"/>
+                              <Component id="jLabel2" pref="111" max="32767" attributes="0"/>
                               <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="TextFieldNuevoPrecio" min="-2" pref="221" max="-2" attributes="0"/>
                               <Component id="TextFieldNuevoNombre" min="-2" pref="221" max="-2" attributes="0"/>
-                              <Component id="TextFieldCodigoActualizar" min="-2" pref="221" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="TextFieldCodigoActualizar" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="32767" attributes="0"/>
+                                  <Component id="BuscarAct" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -90,8 +94,9 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TextFieldCodigoActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BuscarAct" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TextFieldNuevoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -171,10 +176,18 @@
         </Component>
         <Component class="javax.swing.JButton" name="AceptarAct">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Aceptar"/>
+            <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AceptarActActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BuscarAct">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Buscar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarActActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

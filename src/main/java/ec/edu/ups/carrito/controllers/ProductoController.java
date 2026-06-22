@@ -7,8 +7,10 @@ import ec.edu.ups.carrito.views.ActualizarProductoView;
 import ec.edu.ups.carrito.views.BuscarProductoView;
 import ec.edu.ups.carrito.views.CrearProductoView;
 import ec.edu.ups.carrito.views.EliminarProductoView;
+import ec.edu.ups.carrito.views.ListarProductoView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ProductoController {
@@ -17,13 +19,15 @@ public class ProductoController {
     private EliminarProductoView eliminarProductoView;
     private BuscarProductoView buscarProductoView;
     private ActualizarProductoView actualizarProductoView;
+    private ListarProductoView listarProductoView;
 
-    public ProductoController(ProductoDAO productoDAO, CrearProductoView crearProductoView, EliminarProductoView eliminarProductoView, BuscarProductoView buscarProductoView, ActualizarProductoView actualizarProductoView) {
+    public ProductoController(ProductoDAO productoDAO, CrearProductoView crearProductoView, EliminarProductoView eliminarProductoView, BuscarProductoView buscarProductoView, ActualizarProductoView actualizarProductoView, ListarProductoView listarProductoView) {
         this.productoDAO = productoDAO;
         this.crearProductoView = crearProductoView;
         this.eliminarProductoView = eliminarProductoView;
         this.buscarProductoView = buscarProductoView;
         this.actualizarProductoView = actualizarProductoView;
+        this.listarProductoView = listarProductoView; 
     }
     
     
@@ -43,6 +47,9 @@ public class ProductoController {
             crearProductoView.getTextFieldNombre().setText("");
             crearProductoView.getTextFieldPrecio().setText("");
         } else{
+            crearProductoView.getTextFieldCodigo().setText("");
+            crearProductoView.getTextFieldNombre().setText("");
+            crearProductoView.getTextFieldPrecio().setText("");
             crearProductoView.mostrarInformacion("Accion cancelada :(");
         }
     }
@@ -58,6 +65,7 @@ public class ProductoController {
                 eliminarProductoView.mostrarInformacion("Producto eliminado con exito :)");
                 
                 eliminarProductoView.getTextFieldCodigoEliminar().setText("");
+                listarProducto();
             }else{
                 eliminarProductoView.mostrarInformacion("Accion cancelada :(");
             }
@@ -73,13 +81,26 @@ public class ProductoController {
         Producto producto = productoDAO.buscar(codigoBuscar);
         
         if(producto != null){
-            String informacion = "Producto encontrado: \n" + "Nombre: "+ producto.getNombre() + "\nPrecio: " + producto.getPrecio() + " $";
-            //buscarProductoView.mostrarInformacion(informacion);
-            buscarProductoView.getTextAreaBusc().setText(informacion);
-            
-            buscarProductoView.getTextFieldBuscarCodigo().setText("");
+            buscarProductoView.getTextFieldNombreBus().setText(producto.getNombre());
+            buscarProductoView.getTextFieldPrecioBus().setText(String.valueOf(producto.getPrecio()));
         }else{
+            buscarProductoView.getTextFieldNombreBus().setText("");
+            buscarProductoView.getTextFieldPrecioBus().setText("");
             buscarProductoView.mostrarInformacion("No se encontro el producto (Codigo no existe)");
+        }
+    }
+    
+    public void buscarActualizar(){
+        int codigoBuscar = Integer.parseInt(actualizarProductoView.getTextFieldCodigoActualizar().getText());
+        Producto producto = productoDAO.buscar(codigoBuscar);
+        
+        if (producto != null){
+            actualizarProductoView.getTextFieldNuevoNombre().setText(producto.getNombre());
+            actualizarProductoView.getTextFieldNuevoPrecio().setText(String.valueOf(producto.getPrecio()));
+        }else{
+            actualizarProductoView.getTextFieldNuevoNombre().setText("");
+            actualizarProductoView.getTextFieldNuevoPrecio().setText("");
+            actualizarProductoView.mostrarInformacion("No se encontro el producto (Codigo no existe)");
         }
     }
     
@@ -100,12 +121,19 @@ public class ProductoController {
                 actualizarProductoView.getTextFieldCodigoActualizar().setText("");
                 actualizarProductoView.getTextFieldNuevoNombre().setText("");
                 actualizarProductoView.getTextFieldNuevoPrecio().setText("");
+                
+                listarProducto();
             }else{
                 actualizarProductoView.mostrarInformacion("Actualizacion candelada");
             }
         }else{
             actualizarProductoView.mostrarInformacion("No se encontro el producto (Codigo no existe)");
         }
+    }
+    
+    public void listarProducto(){
+        List<Producto> listaActualizada = productoDAO.listar();
+        listarProductoView.cargarDatos(listaActualizada);
     }
     
     
@@ -128,7 +156,13 @@ public class ProductoController {
     }
     
     public void configurarEventosActualizarProducto(){
-       actualizarProductoView.getAceptarAct().addActionListener(new ActionListener() {
+        actualizarProductoView.getBuscarAct().addActionListener(new ActionListener() {
+           @Override
+            public void actionPerformed(ActionEvent e) {
+                buscarActualizar();
+            }
+        });
+        actualizarProductoView.getAceptarAct().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 actualizarProducto();

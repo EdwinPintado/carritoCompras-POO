@@ -27,15 +27,7 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
     public void setCancelarBusc(JButton CancelarBusc) {
         this.CancelarBusc = CancelarBusc;
     }
-
-    public TextArea getTextAreaBusc() {
-        return TextAreaBusc;
-    }
-
-    public void setTextAreaBusc(TextArea TextAreaBusc) {
-        this.TextAreaBusc = TextAreaBusc;
-    }
-
+    
     public TextField getTextFieldBuscarCodigo() {
         return TextFieldBuscarCodigo;
     }
@@ -43,6 +35,24 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
     public void setTextFieldBuscarCodigo(TextField TextFieldBuscarCodigo) {
         this.TextFieldBuscarCodigo = TextFieldBuscarCodigo;
     }
+
+    public TextField getTextFieldNombreBus() {
+        return TextFieldNombreBus;
+    }
+
+    public void setTextFieldNombreBus(TextField TextFieldNombreBus) {
+        this.TextFieldNombreBus = TextFieldNombreBus;
+    }
+
+    public TextField getTextFieldPrecioBus() {
+        return TextFieldPrecioBus;
+    }
+
+    public void setTextFieldPrecioBus(TextField TextFieldPrecioBus) {
+        this.TextFieldPrecioBus = TextFieldPrecioBus;
+    }
+    
+    
     
     public void mostrarInformacion (String mensaje){
         JOptionPane.showMessageDialog(this, mensaje);
@@ -58,9 +68,12 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         label1 = new java.awt.Label();
         TextFieldBuscarCodigo = new java.awt.TextField();
-        TextAreaBusc = new java.awt.TextArea();
         AceptarBusc = new javax.swing.JButton();
         CancelarBusc = new javax.swing.JButton();
+        label2 = new java.awt.Label();
+        TextFieldNombreBus = new java.awt.TextField();
+        label3 = new java.awt.Label();
+        TextFieldPrecioBus = new java.awt.TextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -79,11 +92,21 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
 
         TextFieldBuscarCodigo.addActionListener(this::TextFieldBuscarCodigoActionPerformed);
 
-        AceptarBusc.setText("Aceptar");
+        AceptarBusc.setText("Buscar");
         AceptarBusc.addActionListener(this::AceptarBuscActionPerformed);
 
         CancelarBusc.setText("Cancelar ");
         CancelarBusc.addActionListener(this::CancelarBuscActionPerformed);
+
+        label2.setAlignment(java.awt.Label.CENTER);
+        label2.setText("Nombre: ");
+
+        TextFieldNombreBus.addActionListener(this::TextFieldNombreBusActionPerformed);
+
+        label3.setAlignment(java.awt.Label.CENTER);
+        label3.setText("Precio: ");
+
+        TextFieldPrecioBus.addActionListener(this::TextFieldPrecioBusActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,19 +115,28 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextFieldBuscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
                         .addComponent(AceptarBusc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CancelarBusc))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TextFieldBuscarCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(TextAreaBusc, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextFieldNombreBus, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextFieldPrecioBus, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,18 +148,23 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextFieldBuscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldNombreBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldPrecioBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AceptarBusc)
                     .addComponent(CancelarBusc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextAreaBusc, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(34, 34, 34))
         );
 
         TextFieldBuscarCodigo.getAccessibleContext().setAccessibleName("TextFieldBuscarCodigo");
         TextFieldBuscarCodigo.getAccessibleContext().setAccessibleDescription("");
-        TextAreaBusc.getAccessibleContext().setAccessibleName("TextAreaBusc");
         AceptarBusc.getAccessibleContext().setAccessibleName("AceptarBusc");
         CancelarBusc.getAccessibleContext().setAccessibleName("CancelarBusc");
 
@@ -161,18 +198,28 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
 
     private void CancelarBuscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBuscActionPerformed
         TextFieldBuscarCodigo.setText("");
-        TextAreaBusc.setText("");
         dispose();
     }//GEN-LAST:event_CancelarBuscActionPerformed
+
+    private void TextFieldNombreBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNombreBusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldNombreBusActionPerformed
+
+    private void TextFieldPrecioBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldPrecioBusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldPrecioBusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarBusc;
     private javax.swing.JButton CancelarBusc;
-    private java.awt.TextArea TextAreaBusc;
     private java.awt.TextField TextFieldBuscarCodigo;
+    private java.awt.TextField TextFieldNombreBus;
+    private java.awt.TextField TextFieldPrecioBus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
+    private java.awt.Label label2;
+    private java.awt.Label label3;
     // End of variables declaration//GEN-END:variables
 }

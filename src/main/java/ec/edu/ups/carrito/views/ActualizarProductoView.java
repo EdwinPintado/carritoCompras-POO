@@ -51,6 +51,14 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
         this.TextFieldNuevoPrecio = TextFieldNuevoPrecio;
     }
 
+    public JButton getBuscarAct() {
+        return BuscarAct;
+    }
+
+    public void setBuscarAct(JButton BuscarAct) {
+        this.BuscarAct = BuscarAct;
+    }
+    
     public void mostrarInformacion (String mensaje){
         JOptionPane.showMessageDialog(this, mensaje);
         dispose(); 
@@ -70,6 +78,7 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
         CancelarAct = new javax.swing.JButton();
         TextFieldCodigoActualizar = new javax.swing.JTextField();
         AceptarAct = new javax.swing.JButton();
+        BuscarAct = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -97,8 +106,11 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
 
         TextFieldCodigoActualizar.addActionListener(this::TextFieldCodigoActualizarActionPerformed);
 
-        AceptarAct.setText("Aceptar");
+        AceptarAct.setText("Actualizar");
         AceptarAct.addActionListener(this::AceptarActActionPerformed);
+
+        BuscarAct.setText("Buscar");
+        BuscarAct.addActionListener(this::BuscarActActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,14 +122,17 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TextFieldNuevoPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextFieldNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldCodigoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(TextFieldCodigoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(BuscarAct)))))
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -134,8 +149,9 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TextFieldCodigoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(TextFieldCodigoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BuscarAct))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(TextFieldNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,9 +209,14 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_AceptarActActionPerformed
 
+    private void BuscarActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarActActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarAct;
+    private javax.swing.JButton BuscarAct;
     private javax.swing.JButton CancelarAct;
     private javax.swing.JTextField TextFieldCodigoActualizar;
     private javax.swing.JTextField TextFieldNuevoNombre;
